@@ -18,14 +18,16 @@ class Login_page():
     # page locatore
     make_appointment=(By.XPATH,"//a[@id='btn-make-appointment']")
     username=(By.XPATH,"//input[@id='txt-username']")
-    password=(By.CSS_SELECTOR,"//input[@id='txt-password']")
+    password=(By.XPATH,"//input[@id='txt-password']")
     login_button=(By.XPATH,"//button[@id='btn-login']")
+    error_message=(By.CSS_SELECTOR,".lead.text-danger")
+
 
 
     # return Webelements
 
     def get_makeappointment(self):
-        return self.driver.find_element(*Login_page.make_appointment)
+        return self.driver.find_element(*Login_page.make_appointment).click()
     def get_username(self):
         return self.driver.find_element(*Login_page.username)
 
@@ -35,14 +37,20 @@ class Login_page():
     def get_login_button(self):
         return self.driver.find_element(*Login_page.login_button)
 
+    def get_error_message(self):
+        return self.driver.find_element(*Login_page.error_message)
+
+
+
 
     def login_to_cura(self,user,pwd):
-        self.get_makeappointment().click()
         self.get_username().send_keys(user)
-        self.get_username().send_keys(pwd)
+        self.get_password().send_keys(pwd)
         self.get_login_button().click()
 
 
+    def Error_message(self):
+        return self.get_error_message().text
 
 
 
