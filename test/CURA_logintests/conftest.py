@@ -9,10 +9,10 @@ def setup(request):
     driver = webdriver.Chrome()
     driver.maximize_window()
 
-    name=os.getenv("name")
-    password=os.getenv("password")
-    url=os.getenv("url")
-    # driver.get(url)
+    name=os.getenv("NAME")
+    password=os.getenv("PASSWORD")
+    url=os.getenv("URL")
+    driver.get(url)
 
 
     request.cls.driver=driver
